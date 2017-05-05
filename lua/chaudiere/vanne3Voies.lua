@@ -1,27 +1,25 @@
 #!/usr/bin/lua
 
-PI_IP = "127.0.0.1"
-gpioPinTDown = 2
-gpioPinTUp = 0
+PI_IP = "192.168.1.30"
+gpioPinActivate = 0
+gpioPinDirection = 2
 
-idxCons = 37	-- Idx containing the target watertemperature
+idxCons = 37	-- Idx containing the target water temperature
 idxTemp = 28 	-- Idx of the thermometer
-gpioOn = 1
-gpioOff = 0
+gpioPinActivateOn = 1
+gpioPinActivateOff = 0
+gpioPinDirectionUp = 0
+gpioPinDirectionDown = 1
 
 function change3Voies(direction)
     if direction == 1 then
-    	print('up')
-        os.execute("gpio write " .. gpioPinTUp .. " " .. gpioOn) 
-        os.execute("gpio write " .. gpioPinTDown .. " " .. gpioOff)
+        os.execute("gpio write " .. gpioPinDirection .. " " .. gpioPinDirectionUp)
+        os.execute("gpio write " .. gpioPinActivate .. " " .. gpioPinActivateOn)
     elseif direction  == -1 then
-        print('down')
-        os.execute("gpio write " .. gpioPinTUp .. " " .. gpioOff)
-        os.execute("gpio write " .. gpioPinTDown .. " " .. gpioOn)
+        os.execute("gpio write " .. gpioPinDirection .. " " .. gpioPinDirectionDown)
+        os.execute("gpio write " .. gpioPinActivate .. " " .. gpioPinActivateOn)
     else
-        print('STOP')
-        os.execute("gpio write " .. gpioPinTUp .. " " .. gpioOn)
-        os.execute("gpio write " .. gpioPinTDown .. " " .. gpioOn)
+        os.execute("gpio write " .. gpioPinActivate .. " " .. gpioPinActivateOff)
     end
 end
 
@@ -59,9 +57,14 @@ while true do
     oldConsigne = consigne
     consigne = getCons(idxCons)
     temp = getTemp(idxTemp)
---    print(consigne)
---    print(temp)
-    
+    if (temp == nil or consigne == nil) then
+    	change3Voies(-1);
+    	print(os.date("%x %X") .. " temp or consigne == nil. Waiting 60sec.");
+    	sleep(60);
+    	break;
+    end
+    print(os.date("%x %X") .. " C:" .. consigne .. " T:" .. temp)
+        
     if (consigne ~= oldConsigne) then
         goFast = true
     end
@@ -106,3 +109,4 @@ while true do
     	sleep(6)
     end
 end
+
