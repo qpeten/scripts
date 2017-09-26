@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# This was never finished (I have used docker instead)
+
 # Created by Quentin Peten on 21/06/2016
 #
 # Makes all the necessary operations to be able to run multiple instances of transmission-daemon on the same machine.

@@ -1,5 +1,7 @@
 #!/usr/bin/lua
 
+#Controls a 3-way valve to keep water at a certain temperatures. It is supposed to obtain all temperature data from Domoticz
+
 PI_IP = "192.168.1.30"
 gpioPinActivate = 0
 gpioPinDirection = 2

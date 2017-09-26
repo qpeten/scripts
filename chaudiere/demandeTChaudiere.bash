@@ -1,9 +1,11 @@
 #!/bin/bash
 
+# Should be called to manage the relays controlling the resistor network that itself controls the 'exterior temperature' the heating system will see
 
 #orig was 23:27 || 00 11 10 01
 # 24 23 27
 
+#Different pins used
 A="24"
 B="23"
 C="27"

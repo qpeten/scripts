@@ -1,5 +1,7 @@
 #!/usr/bin/lua
 
+# Was never competely finished
+
 -- Dependencies :
 --	- jq
 --	- domoticz (obviously)
