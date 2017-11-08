@@ -1,5 +1,5 @@
-rsync -a -v -z --delete ~/script ~/document ~/media ~/programme ~/screenshots quentin@fileServer:/mnt/vault/documents/quentin/copy/ROOT
+rsync -a -v -z --delete ~/script ~/document ~/media ~/programme ~/screenshots quentin@peten.duckdns.org:/mnt/vault/documents/quentin/COPY/mbp13-quentin
 
-rsync -a -v -z --delete --exclude=media/video/video/movies/ --exclude=tmp/download /Volumes/FCPXDATA/  quentin@fileServer:/mnt/vault/documents/quentin/copy/FCPXDATA
+rsync -a -v -z --delete --exclude=media/video/movies/ --exclude=tmp/download --exclude=.Spotlight /Volumes/FCPXDATA/  quentin@peten.duckdns.org:/mnt/vault/documents/quentin/COPY/FCPXDATA
 
-rsync -a -v -z --delete --exclude=.Trashes --exclude=.Spotlight-V100 /Volumes/IOMEGA500/ quentin@fileServer:/mnt/vault/documents/quentin/copy/IOMEGA
+rsync -a -v -z --delete --exclude=.Trashes --exclude=.Spotlight* /Volumes/IOMEGA500/ quentin@peten.duckdns.org:/mnt/vault/documents/quentin/COPY/IOMEGA
